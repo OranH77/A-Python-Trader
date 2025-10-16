@@ -1,6 +1,6 @@
 [
     {
-        "symbol": "XAUUSDm",
+        "symbol": "XAUUSD+",
         "strategies": [
             {
                 "name": "break_strategy",

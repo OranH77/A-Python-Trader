@@ -48,6 +48,11 @@ class MT5API:
         symbol_rates = mt5.copy_rates_from_pos(
             symbol, getattr(mt5, "TIMEFRAME_" + (interval[-1:] + interval[:-1]).upper()), 0, kwargs["limit"]
         )
+
+        if symbol_rates is None or len(symbol_rates) == 0:
+            bot_logger.warning(f"No klines data returned for {symbol} with interval {interval}")
+            return pd.DataFrame() # Return an empty DataFrame
+
         df = pd.DataFrame(symbol_rates)
         df["time"] += -time.timezone
         df["time"] = pd.to_datetime(df["time"], unit="s")

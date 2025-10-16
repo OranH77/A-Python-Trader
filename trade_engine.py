@@ -57,7 +57,7 @@ class TradeEngine:
                 self.last_updated_tfs[tf] = chart_df.iloc[-1]["Open time"]
             bot_trader.init_chart(tfs_chart)
             bot_trader.attach_oms(self.oms)
-            self.required_tfs.extend(bot_trader.get_required_tfs())
+            self.required_tfs.extend(bot_trader.get_required_tfs()) # type: ignore
             self.bot_traders.append(bot_trader)
         self.required_tfs = set(self.required_tfs)
         # Sort timeframes from large to small
